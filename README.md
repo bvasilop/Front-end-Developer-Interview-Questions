@@ -24,12 +24,18 @@ This file contains a number of front-end interview questions that can be used wh
 
 #### General Questions:
 
-* What did you learn yesterday/this week?
+* What did you learn yesterday/this week?  
+
+**Geocoding functions must be used in HTTPS secure server.** 
+
 * What excites or interests you about coding?
 * What is a recent technical challenge you experienced and how did you solve it?
 * What UI, Security, Performance, SEO, Maintainability or Technology considerations do you make while building a web application or site?
 * Talk about your preferred development environment.
-* Which version control systems are you familiar with?
+* Which version control systems are you familiar with? * 
+
+**Github** 
+
 * Can you describe your workflow when you create a web page?
 * If you have 5 different stylesheets, how would you best integrate them into the site?
 * Can you describe the difference between progressive enhancement and graceful degradation?
@@ -48,33 +54,158 @@ This file contains a number of front-end interview questions that can be used wh
 
 #### HTML Questions:
 
-* What does a `doctype` do?
-* What's the difference between full standards mode, almost standards mode and quirks mode?
-* What's the difference between HTML and XHTML?
-* Are there any problems with serving pages as `application/xhtml+xml`?
-* How do you serve a page with content in multiple languages?
-* What kind of things must you be wary of when design or developing for multilingual sites?
-* What are `data-` attributes good for?
-* Consider HTML5 as an open web platform. What are the building blocks of HTML5?
-* Describe the difference between a `cookie`, `sessionStorage` and `localStorage`.
-* Describe the difference between `<script>`, `<script async>` and `<script defer>`.
-* Why is it generally a good idea to position CSS `<link>`s between `<head></head>` and JS `<script>`s just before `</body>`? Do you know any exceptions?
-* What is progressive rendering?
-* Have you used different HTML templating languages before?
+* What does a `doctype` do?  
+
+**The doctype declaration should be the very first thing in an HTML document, before the tag. The doctype declaration is not an HTML tag; it is an instruction to the web browser about what version of the markup language the page is written in. The doctype declaration refers to a Document Type Definition (DTD).** 
+
+* What's the difference between full standards mode, almost standards mode and quirks mode?  
+
+**Layout engines in browsers uses three modes:
+Quirks mode: In quirks mode, layout emulates nonstandard behavior in Navigator 4 and IE 5. These were needed for websites written before introduction of web standards. 
+Full standard mode: In this mode, the behavior described is same as described by HTML and CSS specifications. Most of the modern browsers uses full standard mode.  
+Almost standard Mode: In almost standard mode there is very small number of quirks implementation.    
+https://neal.codes/blog/front-end-interview-questions-html/** .
+
+* What's the difference between HTML and XHTML?  
+
+**Broadly, the XML rules require that all elements be closed, either by a separate closing tag or using self-closing syntax (e.g. `<br />`), while HTML syntax permits some elements to be unclosed because either they are always empty (e.g. `<input>`) or their end can be determined implicitly ("omissibility", e.g.`<p>`) 
+XML is case-sensitive for element and attribute names, while HTML is not.  
+https://neal.codes/blog/front-end-interview-questions-html/**   
+
+* Are there any problems with serving pages as `application/xhtml+xml`?  
+
+**It will more than likely mess up the page for anyone still using older versions of IE. When a browser reads XML it uses an XML parser, not an HTML parser .   
+https://neal.codes/blog/front-end-interview-questions-html/** .  
+
+* How do you serve a page with content in multiple languages?  
+
+**Always use a language attribute on the html tag to declare the default language of the text in the page. When the page contains content in another language, add a language attribute to an element surrounding that content.  
+Always use a language attribute on the html element. This is inherited by all other elements, and so will set a default language for the text in the document head element.  
+If your document is HTML (ie. served as text/html), use the lang attribute to set the language of the document or a range of text. For example, the following sets the default language to French: `<html lang="fr">`** 
+
+* What kind of things must you be wary of when design or developing for multilingual sites?  
+
+**Properly localizing content for different audiences based on their location, as well as allowing for a user to easily change their country/language.**  
+
+* What are `data-` attributes good for?  
+
+**Storing data in HTML for DOM parsing, or other ways of keeping track of information.** . 
+
+* Consider HTML5 as an open web platform. What are the building blocks of HTML5?  
+
+`<article>`
+`<aside>`
+`<audio>`
+`<canvas>`
+`<figcaption>`
+`<figure>`
+`<footer>`
+`<header>`
+`<hgroup>`
+`<output>`
+`<section>`
+`<video>`   
+  **The numerous APIs and the more semantic tags, could also be said to be the building blocks** 
+
+* Describe the difference between a `cookie`, `sessionStorage` and `localStorage`.  
+
+**Cookie:
+Max size of 4093 bytes
+Can set expiration date
+Sent on every request
+sessionStorage:
+Max size of 2.5MBs+ depending on browser
+Stored in browser and not sent with every request
+If you close a tab using sessionStorage, open a new tab, or exit the browser - you'll lose that specific sessionStorage data.
+localStorage:
+Max size of 2.5MBs+ depending on browser
+Stored in browser and not sent with every request
+Will persist if browser/tabs are closed.** 
+
+* Describe the difference between `<script>`, `<script async>` and `<script defer>`.  
+
+**A regular `<script>` tag will block rendering of the page, and the page will not continue to load until the script finishes.
+`<script async>` will run the script asynchronously, meaning that it will not block rendering, but will run as soon as the script is available. This is usually intended for CDN files, or other such files, which do not change the page structure.
+`<script defer>` will defer the script to run after the page is done parsing and before an onload event.**  
+  
+* Why is it generally a good idea to position CSS `<link>`s between `<head></head>` and JS `<script>`s just before `</body>`? Do you know any exceptions?  
+
+**You usually put the `<link>` tags in between the `<head>` to prevent Flash of Unstyled Content which gives the user something to look at while the rest of the page is being parsed.  
+Since Javascript blocks rendering by default, and the DOM and CSSOM construction can be also be delayed, it is usually best to keep scripts at the bottom of the page.  
+Exceptions are if you grab the scripts asynchronously, or at least defer them to the end of the page.**  
+
+* What is progressive rendering?  
+
+**Progressive rendering is the name given to techniques used to render content for display as quickly as possible. It used to be much more prevalent in the days before broadband internet but it's still useful in modern development as mobile data connections are becoming increasingly popular (and unreliable!)**  
+
+* Have you used different HTML templating languages before?  
+
+**A website template is a pre-built website composed of HTML pages that include integrated images, text content and support files for font styles and Javascripts.  
+ Django (Python), ERB/Haml (Ruby), and Smarty (PHP)** 
 
 #### CSS Questions:
 
-* What is the difference between classes and IDs in CSS?
-* What's the difference between "resetting" and "normalizing" CSS? Which would you choose, and why?
-* Describe Floats and how they work.
-* Describe z-index and how stacking context is formed.
-* Describe BFC(Block Formatting Context) and how it works.
-* What are the various clearing techniques and which is appropriate for what context?
-* Explain CSS sprites, and how you would implement them on a page or site.
-* What are your favourite image replacement techniques and which do you use when?
+* What is the difference between classes and IDs in CSS?  
+
+**Unlike the id selector, the class selector is most often used on several elements. This allows you to set a particular style for many HTML elements with the same class. The class selector uses the HTML class attribute, and is defined with a "." id is used when we have to apply CSS property to one attribute only.** . 
+
+* What's the difference between "resetting" and "normalizing" CSS? Which would you choose, and why?  
+
+**Normalizing means to make a consistent look and feel of document styles for various browsers, while resetting is to clear the default CSS style of DOM elements.
+https://yujianmin.wordpress.com/tag/css-interview-questions/**
+
+* Describe Floats and how they work.  
+
+**Float defines whether or not an element should float (left/right). In the simplest usage, the float can be used to wrap text around a image.  
+Float affects not only  the target element, but also its children.**
+
+
+* Describe z-index and how stacking context is formed.  
+
+**The z-index property specifies the stack order of an element, an element with greater stack order is always in front of an element with a lower stack order. Say two DIVs with the same parent, higher z-index will be displayed. It will inherit the z-index property of the parent. Z-index only works on positioned elements (position:absolute, position:relative, or position:fixed). Value can be negative.** 
+
+* Describe BFC(Block Formatting Context) and how it works.  
+
+**A BFC is part of the visual CSS rendering of a web page in which block boxes are laid out. For effectively creating the block content, applying CSS like overflow: scroll/hidden, display: inline-block/flex/table, float:left/right to the container.
+In a block formatting context, each box’s left outer edge touches the left edge of the containing block (for right-to-left formatting, right edges touch).** 
+
+* What are the various clearing techniques and which is appropriate for what context?  
+
+**a. Create an empty DIV:  
+b. Set overflow: setting auto or hidden overflow property on parent will expand it to contain the floats.  
+c. Use psuedo class: uses the parent’s :after to add the clear: both property 
+.clearfix:after { 
+content: “”;  
+visibility: hidden;  
+display: block;  
+height: 0;  
+clear: both;  
+}** 
+
+* Explain CSS sprites, and how you would implement them on a page or site.  
+
+**CSS sprites is the technique to combine all individual images into one big image so that it can help reduce HTTP requests and data size.  
+Usually, you don’t know how many images you need at the beginning, so it will be done at the stage of production launch. Locating of individual images is by using background image position index.** 
+
+* What are your favourite image replacement techniques and which do you use when?  
+
+**CSS image replacement is a technique of replacing a text element (usually a header tag) with an image. An example of this would be including a logo on a page. You may want to use a `<h1>` tag and text for this for the accessibility and SEO benefits, but ideally you’d like to show your logo, not text.** 
+
 * How would you approach fixing browser-specific styling issues?
-* How do you serve your pages for feature-constrained browsers?
-  * What techniques/processes do you use?
+
+**a. Use normalized CSS library 
+b. Implement vendor specific CSS fix 
+c. Test in all targeted browsers** 
+
+* How do you serve your pages for feature-constrained browsers? 
+* What techniques/processes do you use?
+
+**a. Reduce content and layout for feature-constrained browsers.  
+b. Add vendor-specific CSS fixes to the pages 
+c. Media query, browser detection (buggy)** 
+
+
+  
 * What are the different ways to visually hide content (and make it available only for screen readers)?
 * Have you ever used a grid system, and if so, what do you prefer?
 * Have you used or implemented media queries or mobile specific layouts/CSS?
