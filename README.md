@@ -173,14 +173,15 @@ In a block formatting context, each box’s left outer edge touches the left edg
 
 **a. Create an empty DIV:  
 b. Set overflow: setting auto or hidden overflow property on parent will expand it to contain the floats.  
-c. Use psuedo class: uses the parent’s :after to add the clear: both property 
+c. Use psuedo class: uses the parent’s :after to add the clear: both property**    
+
 .clearfix:after { 
 content: “”;  
 visibility: hidden;  
 display: block;  
 height: 0;  
 clear: both;  
-}** 
+}
 
 * Explain CSS sprites, and how you would implement them on a page or site.  
 
@@ -207,27 +208,191 @@ c. Media query, browser detection (buggy)**
 
   
 * What are the different ways to visually hide content (and make it available only for screen readers)?
-* Have you ever used a grid system, and if so, what do you prefer?
-* Have you used or implemented media queries or mobile specific layouts/CSS?
+
+**CSS display:none and/or visibility:hidden**
+**Classic Method:** 
+  `.hidden {  
+    position: absolute;   
+    left:-10000px;    
+    top: auto;    
+    width: 1px;    
+    height: 1px;    
+    overflow: hidden;    
+    }` 
+`<div class="hidden">Hidden content here.</div>`
+
+**New Method:** 
+  `hidden {  
+  position: absolute;    
+  clip: rect(0px 0px 0px 0px);    
+}` 
+
+`hidden {   
+  position: absolute;     
+  clip: rect(0px 0px 0px 0px);    
+}`  
+**Invisible Content**
+`visibility: hidden; and/or display:none;`
+
+* Have you ever used a grid system, and if so, what do you prefer?  
+
+**Yes. Bootstrap, MUI CSS**
+
+* Have you used or implemented media queries or mobile specific layouts/CSS?  
+
+**Yes. Using Media Queries**
+
 * Are you familiar with styling SVG?
+
+**Not much experience in SVG except generating SVG images from JPG/PNG**
+
 * How do you optimize your webpages for print?
+
+**The simplest method is to create a style sheet for print only and test it well.
+
+**e.g `<link rel=”stylesheet” type=”text/css” href=”/print.css” href=”/print.css” media=”print” />` 
+Some steps:  
+Format heading and paragraph tags, links and tables, clear unnecessary contents and images.** 
+
 * What are some of the "gotchas" for writing efficient CSS?
+
+**a. Know different browsers have different CSS hacks 
+b. Cater for mobile devices or small screen size 
+c. Good HTML structure and CSS OOP rules with good naming  
+d. Avoid key selectors that match large numbers of elements (tag and universal selectors) 
+e. Prefer class and ID selectors over tag selectors 
+f. Avoid redundant selectors 
+g. Preferably don’t use * (universal selector) 
+h. Use framework (Bootstrap etc.)** 
+
 * What are the advantages/disadvantages of using CSS preprocessors?
-  * Describe what you like and dislike about the CSS preprocessors you have used.
+* Describe what you like and dislike about the CSS preprocessors you have used.  
+
+**1. Debugging is harder 
+2. Compilation slows down development 
+3. Performance is compromised 
+4. Maintainence and overengineering  
+5. Tooling and developer convenience 
+6. Saving generated files (or not) 
+7. Capability and understanding 
+Summary
+It’s easy to add a CSS preprocessor to the tech stack. But, it’s not easy to remove it down the line, should we so choose.  
+It’s our responsibility to consider the impact they have on our work flow before making the easy decision to install one.**
+https://yujianmin.wordpress.com/tag/css-interview-questions/
+http://blog.millermedeiros.com/the-problem-with-css-pre-processors/
+
 * How would you implement a web design comp that uses non-standard fonts?
+
+**Use @font-face or link the webfont url as CSS.** 
+https://www.quora.com/What-is-the-best-way-to-use-non-standard-fonts-online 
+
 * Explain how a browser determines what elements match a CSS selector.
+
+**Browsers read selectors from right-to-left. First looks for all elements matching the key selector (the right-most). Then checks if it matches or is under the next (left-most) element.**
+
 * Describe pseudo-elements and discuss what they are used for.
+
+**Just like pseudo-classes, pseudo-elements are added to selectors but instead of describing a special state, they allow you to style certain parts of a document. For example, the ::first-linepseudo-element targets only  the first line of an element specified by the selector.** 
+
+* Describe pseudo-elements and discuss what they are used for.  
+
+**A CSS pseudo-class is a keyword added to selectors that specifies a special state of the element to be selected. For example :hover will apply a style when the user hovers over the element specified by the selector.  
+Pseudo-classes, together with pseudo-elements, let you apply a style to an element not only in relation to the content of the document tree, but also in relation to external factors like the history of the navigator (:visited, for example), the status of its content (like :checked on some form elements), or the position of the mouse (like :hover which lets you know if the mouse is over an element or not).**
+
 * Explain your understanding of the box model and how you would tell the browser in CSS to render your layout in different box models.
+
+**For display purpose, every element in the page is considered a box. The box model refers to the specification of the box attributes such as the width, padding, border and margin. Some browsers (such as Firefox) think the width should only include the the content itself, not the padding, boarder, nor margin. Other browsers (such as IE) think the width should include the content, padding, and boarder, but not the margin.** 
+
+**Content-box: width & height includes content but not padding/border/margin** 
+
+**Padding-box: include up to padding** 
+
+**Border-box: include up to border, but not margin** 
+
+https://css-tricks.com/the-css-box-model/
+
 * What does ```* { box-sizing: border-box; }``` do? What are its advantages?
+
+**content-box:This is the initial and default value as specified by the CSS standard. The width and heightproperties are measured including only the content, but not the padding, border or margin. Note: Padding, border & margin will be outside of the box e.g. IF .box {width: 350px}; THEN you apply {border: 10px solid black;} RESULT {rendered in the browser} .box {width: 370px;}So simply the dimension of element is calculated as, width = width of the content, and height = height of the content (excluding the values of border and padding).      
+border-box:The width and height properties include the padding and border, but not the margin. This is the box model used by Internet Explorer when the document is in Quirks mode. Note that padding and border will be inside of the box e.g.  .box {width: 350px; border: 10px solid black;} leads to a box rendered in the browser of width: 350px. The content box can’t be negative and is floored to 0, making it impossible to use border-box to make the element disappear.Here the dimension is calculated as, width = border + padding + width of the content, and height = border + padding + height of the content. The advantage of forcing all elements to adopt the border-box model is to unify the element width calculation regardless to browsers.**  
+
+https://developer.mozilla.org/en-US/docs/Web/CSS/box-sizing
+
 * List as many values for the display property that you can remember.
+
+**block, inline, inline-block, none, inherit, table, table-cell, flex.**  
+
 * What's the difference between inline and inline-block?
+
+**inline-block: Displays an element as an inline-level block container. The inside of this block is formatted as block-level box, and the element itself is formatted as an inline-level box 
+block:Displays an element as a block element**
+
 * What's the difference between a relative, fixed, absolute and statically positioned element?
-* The 'C' in CSS stands for Cascading.  How is priority determined in assigning styles (a few examples)?  How can you use this system to your advantage?
-* What existing CSS frameworks have you used locally, or in production? How would you change/improve them?
+
+**relative: relative to itself, combine to use top/left.** 
+
+**fixed: fixed at the position to the viewport, like top nav, no change when window scrolls.** 
+
+**absolute: An element with this type of positioning is not affected by other elements and it doesn’t affect other elements.**  **You use it to position element to the exact location. It’s relative to the parent.** 
+**static: default position** 
+https://css-tricks.com/absolute-relative-fixed-positioining-how-do-they-differ/ 
+
+*The 'C' in CSS stands for Cascading.  How is priority determined in assigning styles (a few examples)?  How can you use this system to your advantage?
+
+
+**Order in ascending order of importance:** 
+
+**User agent declarations,  
+User declarations,  
+Author declarations,  
+Author !important declarations,  
+User !important declarations.** 
+https://www.smashingmagazine.com/2010/04/css-specificity-and-inheritance/
+
+* What existing CSS frameworks have you used locally, or in production? How would you change/improve them?  
+
+**Bootstrap. MUI. Can split out component by component by a tiny piece of CSS ?** 
+
 * Have you played around with the new CSS Flexbox or Grid specs?
+
+**The defining aspect of the flex layout is the ability to alter its items’ width and/or height to best fill the available space on any display device. A flex container expands items to fill available free space, or shrinks them to prevent overflow. For small-scale layout. A guide to flexbox.**
+
+**Grid specs**
+https://drafts.csswg.org/css-grid-1/
+
+**For large-scale responsible layout. A guide to Grid CSS.** 
+https://css-tricks.com/snippets/css/complete-guide-grid/
+
+
+**CSS Flexbox** 
+https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout/Using_CSS_flexible_boxes
+
 * How is responsive design different from adaptive design?
+
+https://css-tricks.com/the-difference-between-responsive-and-adaptive-design/
+
+https://www.uxpin.com/studio/blog/responsive-vs-adaptive-design-whats-best-choice-designers/
+
+**Responsive is fluid and adapts to the size of the screen no matter what the target device. Responsive uses CSS media queries to change styles based on the target device such as display type, width, height etc., and only one of these is necessary for the site to adapt to different screens.**
+
+**CSS Media queries**
+https://developers.google.com/web/fundamentals/design-and-ux/responsive/?hl=en
+
+**Adaptive design, on the other hand, uses static layouts based on breakpoints which don’t respond once they’re initially loaded. Adaptive works to detect the screen size and load the appropriate layout for it – generally you would design an adaptive site for six common screen widths (320,480,760,960,1200,1600)**
+
 * Have you ever worked with retina graphics? If so, when and what techniques did you use?
-* Is there any reason you'd want to use `translate()` instead of *absolute positioning*, or vice-versa? And why?
+
+**NO.  
+Retina graphics.**
+
+https://ivomynttinen.com/blog/a-guide-for-creating-a-better-retina-web
+
+* Is there any reason you'd want to use `translate()` instead of *absolute positioning*, or vice-versa? And why?  
+**No experience** 
+https://www.paulirish.com/2012/why-moving-elements-with-translate-is-better-than-posabs-topleft/
+
+*References
+https://yujianmin.wordpress.com/tag/css-interview-questions/
 
 #### JS Questions:
 
