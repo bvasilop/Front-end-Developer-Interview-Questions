@@ -397,14 +397,80 @@ https://yujianmin.wordpress.com/tag/css-interview-questions/
 #### JS Questions:
 
 * Explain event delegation
+
+**One of the hot methodologies in the JavaScript world is event delegation, and for good reason.  Event delegation allows you to avoid adding event listeners to specific nodes;  instead, the event listener is added to one parent.  That event listener analyzes bubbled events to find a match on child elements.**
+https://davidwalsh.name/event-delegate
+https://javascript.info/event-delegation
+
 * Explain how `this` works in JavaScript
+**The this keyword behaves differently in JavaScript compared to other language. In Object Oriented languages, the this keyword refers to the current instance of the class. In JavaScript the value of this is determined mostly by the invocation context of function (context.function()) and where it is called.**
+**From what I understand, ‘this’ refers to itself, to its own object or global object.
+Using ‘this’ are partitioned in 3 locations of code. These are in functions, outside of functions (global scope, ex: window object), and in Javascript’s eval() function.
+Common pitfalls when using ‘this’ are usually relevant to scope issues in real functions, methods, and constructors. Though there are ways to fix these common issues by using ES5, bind() or ES6 arrow functions, =>**
+
+http://2ality.com/2014/05/this.html
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/this
+
 * Explain how prototypal inheritance works
-* What do you think of AMD vs CommonJS?
-* Explain why the following doesn't work as an IIFE: `function foo(){ }();`.
+
+**A prototype is an internal object from which other objects inherit properties. Its main purpose is to allow multiple instances of an object to share a common property. Thus, object properties which are defined using the prototype object are inherited by all instances which reference it.**
+https://www.htmlgoodies.com/html5/tutorials/javascript-prototypical-inheritance-explained.html
+https://medium.com/@rlynjb/js-interview-question-explain-how-prototypal-inheritance-works-7537f98b8cd2
+
+* What do you think of AMD vs CommonJS?  
+
+**AMD and CommonJS are both Javascript module loader. They accomplish the same task but works different.
+AMD is better for browser, hence, the name ‘Asynchronous’, as it loads each distinct module in async manner instead of loading in one large file. No extra steps are required to use AMD, it works out-of-the-box. In my opinion, as it is its in Asynchronous nature, it makes alot of async http requests and may not be as performant as described by other devs.
+While, CommonJS, is a standard, mostly used in servers and it loads modules synchronously, though extra step is required if you want your JS file size to be minified and compressed.**
+https://medium.com/@rlynjb/js-interview-question-what-do-you-think-of-amd-vs-commonjs-71defa831c50
+
+* Explain why the following doesn't work as an IIFE: `function foo(){ }();` 
+
+**What is IIFE?
+An IIFE (pronouced as ‘iffy’) is an abbreviation for Immediately Invoked Function Expression. It is a common Javascript design pattern used by popular JS libraries such as jQuery, Backbone.js. Purpose of using an IIFE is to maintain code inside of a local scope. This means, to be able to use global object inside of IIFE, you will need to pass it as arguments.
+As for an explanation, the following code doesn’t work as an IIFE because it is a function declaration, it does invoked immediately due to its parenthesis at the end, but there are downsides to using this approach.**
+https://medium.com/@rlynjb/js-interview-question-explain-why-the-following-doesn-t-work-as-an-iife-1faaf74a7d7d
+
+
   * What needs to be changed to properly make it an IIFE?
-* What's the difference between a variable that is: `null`, `undefined` or undeclared?
-  * How would you go about checking for any of these states?
-* What is a closure, and how/why would you use one?
+  
+  **For the above code to be considered an IIFE, it needs to be an anonymous function, a function without a name, this is because IIFE needs to be Invoked Immediately without invoking it a function name. We also need to wrap the anonymous function with parenthesis, so the Javascript parser treats our anonymous function as a function expression.
+(function() {}());
+A function expression is when you assign a function to a variable or property of an object. Anything that is a Javascript expression, including function expression, returns a value.**
+https://medium.com/@rlynjb/js-interview-question-explain-why-the-following-doesn-t-work-as-an-iife-1faaf74a7d7d
+
+* What's the difference between a variable that is: `null`, `undefined` or undeclared?  
+
+**undefined is a variable that has been declared but no value exists and is a type of itself ‘undefined’.
+null is a value of a variable and is a type of object.
+We use ‘console.log();’ and ‘type of’ to check if a variable is undefined or null.
+ref: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures
+undeclared variables is a variable that has been declared without ‘var’ keyword.
+testVar = ‘hello world’;
+as opposed to
+var testVar = ‘hello world’;
+When former code is executed, undeclared variables are created as global variable and they are configurable (ex. can be deleted).**
+https://medium.com/@rlynjb/js-interview-question-what-s-the-difference-between-a-variable-that-is-null-undefined-or-bf7233cef1c2
+
+
+* How would you go about checking for any of these states?
+
+**undefined is a variable that has been declared but no value exists and is a type of itself ‘undefined’.
+null is a value of a variable and is a type of object.
+We use ‘console.log();’ and ‘type of’ to check if a variable is undefined or null.
+ref: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures
+undeclared variables is a variable that has been declared without ‘var’ keyword.
+testVar = ‘hello world’;
+as opposed to
+var testVar = ‘hello world’;
+When former code is executed, undeclared variables are created as global variable and they are configurable (ex. can be deleted).**
+https://medium.com/@rlynjb/js-interview-question-what-s-the-difference-between-a-variable-that-is-null-undefined-or-bf7233cef1c2
+https://yehiaabed.com/blog/javascript-questions-answers/
+
+* What is a closure, and how/why would you use one?  
+**Closures are inner functions inside of an outer function. They have their own local scope and has access to outer function's scope, parameters (but NOT arguments object), and they also have access to global variables.** 
+https://medium.com/@rlynjb/js-interview-question-what-is-a-closure-and-how-why-would-you-use-one-b6fd45ea95f6 
+
 * What's a typical use case for anonymous functions?
 * How do you organize your code? (module pattern, classical inheritance?)
 * What's the difference between host objects and native objects?
@@ -431,7 +497,35 @@ duplicate([1,2,3,4,5]); // [1,2,3,4,5,1,2,3,4,5]
 ```
 * Why is it called a Ternary expression, what does the word "Ternary" indicate?
 * What is `"use strict";`? what are the advantages and disadvantages to using it?
-* Create a for loop that iterates up to `100` while outputting **"fizz"** at multiples of `3`, **"buzz"** at multiples of `5` and **"fizzbuzz"** at multiples of `3` and `5`
+
+* Create a for loop that iterates up to `100` while outputting **"fizz"** at multiples of `3`, **"buzz"** at multiples of `5` and **"fizzbuzz"** at multiples of `3` and `5` 
+
+      // First declare for to describe loop  
+      // Secondly declare a variable for i   
+      // Then count through numbers one through 20 
+      
+    `for (var i = 1; i <= 20; i++) {`
+    
+      // Use if conditional to figure out if the numbers are divisible by 3, 5, or both.  
+      // To simplify and condense code see if it is divisible by 15 --any number divisible by 3 and 5 is also divisible by 15--  
+    `if(i % 15 === 0) {`   
+      // If divisible by 15: Print FizzBuzz   
+      `console.log('FizzBuzz');`   
+      // Use else if conditional to determine if divisible by 3   
+  `} else if (i % 3 ===0){`    
+      // If only divisible by 3: Print Fizz    
+      `console.log('Fizz');`  
+      // Use else if conditional to determine if divisible by 5    
+  `} else if (i % 5 === 0) {`   
+      // If divisible by 5, Print Buzz    
+      `console.log('Buzz');`  
+      // Use else conditional to see if the number is not divisible by 3 or 5          
+  `} else {`  
+      // If it is not, then Print number    
+      `console.log(i);`  
+  `}   
+}`
+
 * Why is it, in general, a good idea to leave the global scope of a website as-is and never touch it?
 * Why would you use something like the `load` event? Does this event have disadvantages? Do you know any alternatives, and why would you use those?
 * Explain what a single page app is and how to make one SEO-friendly.
