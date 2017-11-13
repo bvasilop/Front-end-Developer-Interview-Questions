@@ -471,32 +471,92 @@ https://yehiaabed.com/blog/javascript-questions-answers/
 **Closures are inner functions inside of an outer function. They have their own local scope and has access to outer function's scope, parameters (but NOT arguments object), and they also have access to global variables.** 
 https://medium.com/@rlynjb/js-interview-question-what-is-a-closure-and-how-why-would-you-use-one-b6fd45ea95f6 
 
-* What's a typical use case for anonymous functions?
-* How do you organize your code? (module pattern, classical inheritance?)
-* What's the difference between host objects and native objects?
+* What's a typical use case for anonymous functions?  
+**Since Anonymous Functions are function expressions rather than the regular function declaration which are statements. Function expressions are more flexible. We can assign functions to variables, object properties, pass them as arguments to other functions, and even write a simple one line code enclosed in an anonymous functions.** 
+`var squaredArray = inputArray.map(function(x) {   
+ return x * x; });`  
+**With ES6 syntax this becomes even more concise.**
+`var squaredArray = inputArray.map(x => x * x);`  
+**Another typical example would be an anonymous function used by popular frameworks used as IIFE (Immediate Invoked Function Expression).**
+`(function() { })();`
+https://medium.com/@rlynjb/js-interview-question-what-s-a-typical-use-case-for-anonymous-functions-54cf547b2a0e
+
+* How do you organize your code? (module pattern, classical inheritance?)  
+https://medium.com/@rlynjb/js-interview-question-how-do-you-organize-your-code-module-pattern-classical-inheritance-c9be07e5b4a1
+
+* What's the difference between host objects and native objects?  
+https://medium.com/@rlynjb/js-interview-question-what-s-the-difference-between-host-objects-and-native-objects-b395f7c5fbf1
+
 * Difference between: `function Person(){}`, `var person = Person()`, and `var person = new Person()`?
+https://medium.com/@rlynjb/js-interview-question-difference-between-function-person-var-person-person-and-var-ab6eb8c9ae88
+
 * What's the difference between `.call` and `.apply`?
-* Explain `Function.prototype.bind`.
+https://medium.com/@rlynjb/js-interview-question-what-s-the-difference-between-call-and-apply-84e6c6b84f20
+
+* Explain `Function.prototype.bind` 
+
+**Every function has its own scope with visible and accessible variables, but when we define closures, these inner functions creates its own scope as well. ... Once we invoked a function with bind method, it bounds our closure or inner function with the outer function's scope**
+https://medium.com/@rlynjb/js-interview-question-explain-function-prototype-bind-bbdaed41bd89
+
+* What's the difference between `.call` and `.apply`?
+
+https://medium.com/@rlynjb/js-interview-question-what-s-the-difference-between-call-and-apply-84e6c6b84f20
+
 * When would you use `document.write()`?
+https://medium.com/@rlynjb/js-interview-question-when-would-you-use-document-write-ccc199137715
+
 * What's the difference between feature detection, feature inference, and using the UA string?
+https://medium.com/@rlynjb/js-interview-question-what-s-the-difference-between-feature-detection-feature-inference-and-76d2e4956a9b
+
 * Explain Ajax in as much detail as possible.
+https://medium.com/@morgan_ashley/front-end-developer-interview-question-03-4b8c94a42442
+
 * What are the advantages and disadvantages of using Ajax?
-* Explain how JSONP works (and how it's not really Ajax).
+http://www.jscripters.com/ajax-disadvantages-and-advantages/
+
+* Explain how JSONP works (and how it's not really Ajax)
+http://rlynjb.github.io/wandrr/JS-Interview-Question-Explain-how-JSONP-works
+
 * Have you ever used JavaScript templating?
-  * If so, what libraries have you used?
+http://rlynjb.github.io/wandrr/JS-Interview-Question-Have-you-ever-used-JavaScript-templating
+
+* If so, what libraries have you used?
+
 * Explain "hoisting".
-* Describe event bubbling.
+https://developer.mozilla.org/en-US/docs/Glossary/Hoisting
+
+* Describe event bubbling.  
+**Event bubbling directs an event to its intended target, it works like this: A button is clicked and the event is directed to the button. If an event handler is set for that object, the event is triggered. If no event handler is set for that object, the event bubbles up (like a bubble in water) to the objects parent.**
+http://lucybain.com/blog/2014/event-bubbling/
+
 * What's the difference between an "attribute" and a "property"?
+http://lucybain.com/blog/2014/attribute-vs-property/
+
 * Why is extending built-in JavaScript objects not a good idea?
+http://rlynjb.github.io/wandrr/JS-Interview-Question-Why-is-extending-built-in-JavaScript-objects-not-a-good-idea
+
 * Difference between document load event and document DOMContentLoaded event?
+**The DOMContentLoaded event is fired when the document has been completely loaded and parsed, without waiting for stylesheets, images, and subframes to finish loading (the load event can be used to detect a fully-loaded page). A page can't be manipulated safely until the document is "ready."**
+http://lucybain.com/blog/2014/js-document-load-vs-ready/
+
 * What is the difference between `==` and `===`?
+http://conceptf1.blogspot.com/2014/01/javascript-triple-equals-vs-double-equals-operators.html
+https://www.codecademy.com/en/forum_questions/558ea4f5e39efed371000508
+
 * Explain the same-origin policy with regards to JavaScript.
+https://developer.mozilla.org/en-US/docs/Web/Security/Same-origin_policy
+http://lucybain.com/blog/2014/same-origin-policy/
 * Make this work:
 ```javascript
 duplicate([1,2,3,4,5]); // [1,2,3,4,5,1,2,3,4,5]
 ```
 * Why is it called a Ternary expression, what does the word "Ternary" indicate?
+http://rlynjb.github.io/wandrr/JS-Interview-Question-Why-is-it-called-a-Ternary-expression-what-does-the-word-Ternary-indicate
+http://lucybain.com/blog/2014/js-ternary/
+
 * What is `"use strict";`? what are the advantages and disadvantages to using it?
+http://lucybain.com/blog/2014/js-use-strict/
+http://rlynjb.github.io/wandrr/JS-Interview-Question-What-is-use-strict-what-are-the-advantages-and-disadvantages-to-using-it
 
 * Create a for loop that iterates up to `100` while outputting **"fizz"** at multiples of `3`, **"buzz"** at multiples of `5` and **"fizzbuzz"** at multiples of `3` and `5` 
 
@@ -527,6 +587,8 @@ duplicate([1,2,3,4,5]); // [1,2,3,4,5,1,2,3,4,5]
 }`
 
 * Why is it, in general, a good idea to leave the global scope of a website as-is and never touch it?
+https://github.com/utatti/Front-end-Developer-Interview-Questions-And-Answers/blob/master/answers/js-questions.md
+
 * Why would you use something like the `load` event? Does this event have disadvantages? Do you know any alternatives, and why would you use those?
 * Explain what a single page app is and how to make one SEO-friendly.
 * What is the extent of your experience with Promises and/or their polyfills?
